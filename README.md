@@ -129,6 +129,87 @@ Open a terminal in the above directory.
 
 ### 🧪 Prac 10: Wireshark
 Analyze the traffic using **Wireshark** during any of the above simulations.
+# 📡 Wireshark & Tshark Command Cheatsheet
+
+## 🧠 Display Filters (Wireshark GUI or Tshark `-Y`)
+
+| Purpose                        | Display Filter Example                          |
+|-------------------------------|--------------------------------------------------|
+| Filter by IP address          | `ip.addr == 192.168.1.10`                        |
+| Filter by source IP           | `ip.src == 192.168.1.10`                         |
+| Filter by destination IP      | `ip.dst == 192.168.1.20`                         |
+| Filter by protocol            | `tcp`, `udp`, `icmp`, `http`, `dns`             |
+| Filter by port (TCP/UDP)      | `tcp.port == 80`, `udp.port == 53`              |
+| Show only HTTP traffic        | `http`                                          |
+| Filter by MAC address         | `eth.addr == aa:bb:cc:dd:ee:ff`                 |
+| Show only DNS queries         | `dns.flags.response == 0`                       |
+| TCP packets with SYN flag     | `tcp.flags.syn == 1`                            |
+| Packets with errors           | `tcp.analysis.flags`                            |
+
+---
+
+## 🖥️ Tshark (Command-Line Wireshark) Examples
+
+### 🔍 Basic Capture
+```bash
+tshark -i eth0
+```
+Capture on interface `eth0`.
+
+### 💾 Capture and Save to File
+```bash
+tshark -i eth0 -w output.pcap
+```
+Save the captured packets to a `.pcap` file.
+
+### 🎯 Capture with Filter (e.g., only TCP)
+```bash
+tshark -i eth0 -f "tcp"
+```
+Using a **capture filter** (BPF syntax).
+
+### 📄 Read from .pcap File
+```bash
+tshark -r file.pcap
+```
+
+### 🔍 Use a Display Filter (like Wireshark GUI)
+```bash
+tshark -r file.pcap -Y "ip.addr == 192.168.1.10"
+```
+
+### 📋 Print Specific Fields Only
+```bash
+tshark -r file.pcap -T fields -e ip.src -e ip.dst -e frame.len
+```
+
+### ⏱️ Limit the Number of Packets
+```bash
+tshark -c 100 -i eth0
+```
+
+---
+
+## 🧠 Filter Types Summary
+
+- **Capture Filters** (before capture, use with `-f`)
+  - Example: `tcp port 80`, `host 192.168.1.10`, `udp`
+- **Display Filters** (after capture, use with `-Y`)
+  - Example: `ip.addr == 192.168.1.10`, `http.request.method == "GET"`
+
+---
+
+## 📘 Tips
+
+- Use `tshark -D` to list all available interfaces.
+- Combine filters to narrow down traffic:
+  ```bash
+  tshark -r capture.pcap -Y "http.request and ip.addr == 10.0.0.5"
+  ```
+- Use `-T json` or `-T fields` for structured output (great for scripting).
+
+---
+
 
 ---
 
