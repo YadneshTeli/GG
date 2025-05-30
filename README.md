@@ -1,9 +1,9 @@
 
-# ðŸ“˜ Networking Commands and NS-3 Practicals
+# 📘 Networking Commands and NS-3 Practicals
 
 ---
 
-## ðŸ”§ Basic Networking Commands
+## 🔧 Basic Networking Commands
 
 | **Command** | **Description** |
 |-------------|------------------|
@@ -27,9 +27,9 @@
 
 ---
 
-## ðŸ§ª NS-3 Practicals
+## 🧪 NS-3 Practicals
 
-### âš™ï¸ Setup
+### ⚙️ Setup
 Navigate to the NS-3 folder:
 ```bash
 ~/ns3/ns-allinone-3.35/ns-3.35
@@ -38,7 +38,7 @@ Open a terminal in the above directory.
 
 ---
 
-### ðŸ§ª Prac 2: Point-to-Point Topology
+### 🧪 Prac 2: Point-to-Point Topology
 1. Copy `first.cc` to `scratch` folder.
 2. Run:
    ```bash
@@ -48,7 +48,7 @@ Open a terminal in the above directory.
 
 ---
 
-### ðŸ§ª Prac 3: Bus Topology
+### 🧪 Prac 3: Bus Topology
 1. Copy `second.cc` to `scratch` folder.
 2. Run:
    ```bash
@@ -58,7 +58,7 @@ Open a terminal in the above directory.
 
 ---
 
-### ðŸ§ª Prac 4: Star Topology
+### 🧪 Prac 4: Star Topology
 1. Copy `star.cc` from `examples/tcp` to `scratch` folder.
 2. Run:
    ```bash
@@ -68,7 +68,7 @@ Open a terminal in the above directory.
 
 ---
 
-### ðŸ§ª Prac 5: Mesh Topology
+### 🧪 Prac 5: Mesh Topology
 1. Copy `mesh.cc` from `src/mesh/examples` to `scratch` folder.
 2. Run:
    ```bash
@@ -78,7 +78,7 @@ Open a terminal in the above directory.
 
 ---
 
-### ðŸ§ª Prac 6: Hybrid Topology (NetAnim)
+### 🧪 Prac 6: Hybrid Topology (NetAnim)
 1. Copy `third.cc` from `examples/tutorial` to `scratch` and rename it to `hybridanim.cc`.
 2. Edit `hybridanim.cc`:
    - Add the following header files:
@@ -107,7 +107,7 @@ Open a terminal in the above directory.
 
 ---
 
-### ðŸ§ª Prac 7: UDP Client-Server
+### 🧪 Prac 7: UDP Client-Server
 1. Copy `udp-client-server.cc` to `scratch`.
 2. Run:
    ```bash
@@ -117,7 +117,7 @@ Open a terminal in the above directory.
 
 ---
 
-### ðŸ§ª Prac 8/9: TCP Bulk Send
+### 🧪 Prac 8/9: TCP Bulk Send
 1. Copy `Tcp.bulk.send.cc` to `scratch`.
 2. Run:
    ```bash
@@ -127,12 +127,12 @@ Open a terminal in the above directory.
 
 ---
 
-### ðŸ§ª Prac 10: Wireshark
+### 🧪 Prac 10: Wireshark
 Analyze the traffic using **Wireshark** during any of the above simulations.
 
 ---
 
-### ðŸ§ª Prac 11: Flow Monitor in Point-to-Point
+### 🧪 Prac 11: Flow Monitor in Point-to-Point
 1. Copy `first.cc` to `scratch`.
 2. Edit the file:
    - Add headers:
