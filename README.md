@@ -152,10 +152,7 @@ Analyze the traffic using **Wireshark** during any of the above simulations.
      FlowMonitorHelper flowHelper;
      Ptr<FlowMonitor> monitor = flowHelper.InstallAll();
      ```
-   - Before:
-     ```cpp
-     Simulator::Run();
-     ```
+  
      add:
      ```cpp
      Simulator::Stop(Seconds(10.0));
@@ -163,11 +160,34 @@ Analyze the traffic using **Wireshark** during any of the above simulations.
          pointToPoint.EnablePcapAll("p2p");
      }
      ```
+
+ - Before:
+     ```cpp
+     Simulator::Run();
+     ```
+     
    - After simulation:
      ```cpp
      monitor->CheckForLostPackets();
      Ptr<Ipv4FlowClassifier> classifier = DynamicCast<Ipv4FlowClassifier>(flowHelper.GetClassifier());
      std::map<FlowId, FlowMonitor::FlowStats> stats = monitor->GetFlowStats();
+
+     for (auto iter = stats.begin(); iter != stats.end(); ++iter) {
+     Ipv4FlowClassifier::FiveTuple t = classifier->FindFlow(iter->first);
+     double duration = iter->second.timeLastRxPacket.GetSeconds() - iter->second.timeFirstTxPacket.GetSeconds();
+     double throughput = (iter->second.rxBytes * 8.0) / duration / 1000000.0;
+     double avgDelay = (iter->second.rxPackets > 0) ? (iter->second.delaySum.GetSeconds() /iter->second.rxPackets) : 0;
+  
+     std::cout << "Flow " << iter->first << " (" << t.sourceAddress << " -> " <<t.destinationAddress << ")\n";
+     std::cout << " Tx Packets: " << iter->second.txPackets << "\n";
+     std::cout << " Rx Packets: " << iter->second.rxPackets << "\n";
+     std::cout << " Packet Loss: " << (iter->second.txPackets - iter->second.rxPackets) << "\n";
+     std::cout << " Delay Sum: " << iter->second.delaySum.GetSeconds() << " s\n";
+     std::cout << " Response Time: " << avgDelay << " s\n";
+     std::cout << " Dropped Packets: " << iter->second.lostPackets << "\n";
+     std::cout << " Throughput: " << throughput << " Mbps\n";
+     }
+     
      ```
 3. Run:
    ```bash
