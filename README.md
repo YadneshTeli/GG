@@ -206,9 +206,6 @@ tshark -c 100 -i eth0
   ```bash
   tshark -r capture.pcap -Y "http.request and ip.addr == 10.0.0.5"
   ```
-- Use `-T json` or `-T fields` for structured output (great for scripting).
-
----
 
 
 ---
